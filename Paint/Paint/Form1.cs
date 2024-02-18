@@ -28,9 +28,9 @@ namespace Paint
         };
         private readonly Dictionary<string, IFigure> figuresNames = new()
         {
-            { "Прямоугольник", new Rect() },
-            {"Круг", new Circle()},
-            {"Эллипс",  new Ellipse()}
+            { "РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє", new Rect() },
+            {"РљСЂСѓРі", new Circle()},
+            {"Р­Р»Р»РёРїСЃ",  new Ellipse()}
         };
         private readonly Graphics graphics;
         private readonly List<IFigure> drawn = new();
