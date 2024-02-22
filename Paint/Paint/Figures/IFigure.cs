@@ -13,7 +13,7 @@ namespace Paint.Figures
         bool IsFilled { get; set; }
         Rectangle Area { get; set; }
 
-        public void Draw(Graphics g);
+        public void Draw(BufferedGraphics buffer);
 
         public bool Contains(Point point);
     }

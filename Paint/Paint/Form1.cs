@@ -47,6 +47,9 @@ namespace Paint
         private bool isResizing;
         private const int ResizeSquareSize = 8;
 
+        private readonly BufferedGraphicsContext currentContext = BufferedGraphicsManager.Current;
+        private readonly BufferedGraphics buffer;
+
         public PaintForm()
         {
             InitializeComponent();
@@ -56,6 +59,9 @@ namespace Paint
             toolStripFigures.Items.AddRange(figuresNames.Keys.ToArray());
             toolStripFigures.SelectedIndex = 0;
             graphics = CreateGraphics();
+            buffer = currentContext.Allocate(graphics, DisplayRectangle);
+            buffer.Graphics.Clear(BackColor);
+            buffer.Render();
         }
 
         private void SetResizeSquares(Rectangle selectionBox)
@@ -130,7 +136,8 @@ namespace Paint
             clone.Pen = selectionBoxPen;
             clone.Area = area;
             clone.IsFilled = false;
-            clone.Draw(graphics);
+            clone.Draw(buffer);
+            buffer.Render();
         }
 
         private void DrawSelectionBox(Rectangle area)
@@ -183,13 +190,14 @@ namespace Paint
         {
             foreach (var figure in drawn)
             {
-                figure.Draw(graphics);
+                figure.Draw(buffer);
             }
+            buffer.Render();
         }
 
         private void Redraw()
         {
-            graphics.Clear(BackColor);
+            buffer.Graphics.Clear(BackColor);
             DrawAll();
         }
 

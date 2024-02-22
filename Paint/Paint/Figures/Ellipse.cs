@@ -24,13 +24,13 @@ namespace Paint.Figures
         public Pen Pen { get; set; }
         public Brush Brush { get; set; }
 
-        public void Draw(Graphics g)
+        public void Draw(BufferedGraphics buffer)
         {
             if (IsFilled)
             {
-                g.FillEllipse(Brush, Area);
+                buffer.Graphics.FillEllipse(Brush, Area);
             }
-            g.DrawEllipse(Pen, Area);
+            buffer.Graphics.DrawEllipse(Pen, Area);
         }
 
         public object Clone()

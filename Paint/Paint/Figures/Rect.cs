@@ -20,13 +20,13 @@ namespace Paint.Figures
 
         public bool Contains(Point point) => Area.Contains(point);
 
-        public void Draw(Graphics g)
+        public void Draw(BufferedGraphics buffer)
         {
             if (IsFilled)
             {
-                g.FillRectangle(Brush, Area);
+                buffer.Graphics.FillRectangle(Brush, Area);
             }
-            g.DrawRectangle(Pen, Area);
+            buffer.Graphics.DrawRectangle(Pen, Area);
         }
     }
 }
